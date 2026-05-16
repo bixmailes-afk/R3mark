@@ -75,6 +75,15 @@ export default function GameViewerPage({
     return () => document.removeEventListener("fullscreenchange", handler);
   }, []);
 
+  useEffect(() => {
+    if (url.includes("/storage/ag/originals/precision/index.html")) {
+      window.open(
+        "/storage/ag/originals/Resent-Client-main/index.html",
+        "_blank",
+      );
+    }
+  }, [url]);
+
   const applyZoom = (z: number) => {
     const wrapper = wrapperRef.current;
     const container = containerRef.current;
