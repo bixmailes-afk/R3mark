@@ -24,6 +24,7 @@ import { authLimiter, createApiLimiter, createAiLimiter, signupLimiter } from '.
 import { updateIPReputation } from './middleware/security.js';
 import challengeRouter from './routes/challenge.js';
 import aiRouter from './routes/ai.js';
+import moviesRouter from './routes/movies.js';
 import db from './db.js';
 
 import { signupHandler } from './api/signup.js';
@@ -42,9 +43,9 @@ const SqliteStore = BetterSqlite3Session(session);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 dotenv.config({ path: path.join(__dirname, '.env.production') });
-dotenv.config({ path: path.join(__dirname, '.env') });
 
 if (!process.env.TOKEN_SECRET) throw new Error('TOKEN_SECRET must be set');
+if (!process.env.TMDB_API_KEY) throw new Error('TMDB_API_KEY must be set');
 
 const bare = createBareServer('/bare/', { websocket: { maxPayloadLength: 4096 } });
 const barePremium = createBareServer('/api/bare-premium/', { websocket: { maxPayloadLength: 4096 } });
@@ -102,6 +103,7 @@ app.get('/sw.js', (_req, res) => {
 
 app.use('/api', challengeRouter);
 app.use('/api/generate', aiLimiter, express.json({ limit: '10mb' }), aiRouter);
+app.use('/api/tmdb', moviesRouter);
 
 app.post('/api/signup', signupLimiter, signupHandler);
 app.post('/api/signin', signinHandler);
