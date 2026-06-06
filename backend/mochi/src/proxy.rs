@@ -181,7 +181,16 @@ pub async fn proxy_handler(
                         referer_clean.split_once('/').unwrap_or((referer_clean, ""));
                     if let Some(ref_decoded_base) = decode_mochi_url(ref_token) {
                         if let Ok(ref_url) = url::Url::parse(&ref_decoded_base) {
-                            if let Ok(resolved) = ref_url.join(original_uri) {
+                            let join_target = if let Some(stripped) = original_uri
+                                .split(prefix)
+                                .nth(1)
+                                .and_then(|s| s.split_once('/').map(|x| x.1))
+                            {
+                                stripped
+                            } else {
+                                original_uri
+                            };
+                            if let Ok(resolved) = ref_url.join(join_target) {
                                 fallback_target = resolved.to_string();
                             }
                         }
