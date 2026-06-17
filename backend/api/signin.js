@@ -49,7 +49,7 @@ export async function signinHandler(req, res) {
       bio: user.bio,
       avatar_url: user.avatar_url,
       is_admin: effectiveAdmin,
-      is_owner: isOwner,
+      is_owner: user.email === 'tiny.builds00@gmail.com',
     };
 
     req.session.user = sessionUser;
