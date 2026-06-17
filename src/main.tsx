@@ -25,7 +25,7 @@ function applyStoredSettings() {
   if (siteTitle) {
     document.title = siteTitle;
   } else {
-    setTimeout(() => { document.title = "PeteZah"; }, 3000);
+    setTimeout(() => { document.title = "R3mark"; }, 3000);
   }
 
   const siteLogo = get("siteLogo");
