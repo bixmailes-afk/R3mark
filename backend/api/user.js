@@ -20,7 +20,7 @@ export async function getMeHandler(req, res) {
     user.is_admin = 3;
   }
 
-  const is_owner = isOwnerEmail(user.email);
+ const is_owner = user.email === 'tiny.builds00@gmail.com';
   req.session.user.is_admin = user.is_admin;
   req.session.user.username = user.username;
   req.session.user.avatar_url = user.avatar_url;
