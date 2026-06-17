@@ -37,7 +37,7 @@ function getFavicon(url: string): string {
   try {
     if (
       !url ||
-      url === "petezah://newtab" ||
+      url === "r3mark://newtab" ||
       url === "about:blank" ||
       url === "https://"
     )
@@ -53,8 +53,8 @@ function getFavicon(url: string): string {
 
 function formatUrl(raw: string): string {
   const trimmed = raw.trim();
-  if (!trimmed) return "petezah://newtab";
-  if (trimmed.startsWith("petezah://")) return trimmed;
+  if (!trimmed) return "r3mark://newtab";
+  if (trimmed.startsWith("r3mark://")) return trimmed;
   if (trimmed.startsWith("http://") || trimmed.startsWith("https://"))
     return trimmed;
   if (trimmed.includes(".") && !trimmed.includes(" "))
@@ -85,8 +85,8 @@ function makeScramjetFrame(url: string): ScramjetFrame | undefined {
 
 function createTab(url: string, spaceId: string): Tab {
   const tabId = String(tabCounter++);
-  const isNewTab = !url || url === "petezah://newtab" || url === "about:blank";
-  const finalUrl = isNewTab ? "petezah://newtab" : url;
+  const isNewTab = !url || url === "r3mark://newtab" || url === "about:blank";
+  const finalUrl = isNewTab ? "r3mark://newtab" : url;
   const frame = isNewTab ? undefined : makeScramjetFrame(url);
   if (frame) {
     frame.addEventListener?.("urlchange", (e: any) => {
@@ -112,7 +112,7 @@ function makeNewTabEntry(spaceId: string): Tab {
   return {
     id: String(tabCounter++),
     title: "New Tab",
-    url: "petezah://newtab",
+    url: "r3mark://newtab",
     spaceId,
   };
 }
@@ -224,12 +224,12 @@ export function useBrowserState() {
         prev.map((t) => {
           if (t.id !== activeTabId) return t;
 
-          if (url === "petezah://newtab" || url.startsWith("petezah://")) {
+          if (url === "r3mark://newtab" || url.startsWith("r3mark://")) {
             try {
               t.frame?.frame?.parentNode?.removeChild(t.frame.frame);
               t.frame?.destroy?.();
             } catch {}
-            const title = url === "petezah://newtab" ? "New Tab" : url.replace("petezah://", "").replace(/^\w/, (c) => c.toUpperCase());
+            const title = url === "r3mark://newtab" ? "New Tab" : url.replace("r3mark://", "").replace(/^\w/, (c) => c.toUpperCase());
             return { ...t, url, title, favicon: "", frame: undefined };
           }
 
