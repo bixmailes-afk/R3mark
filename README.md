@@ -1,4 +1,4 @@
-# **PeteZahGames**
+# **R3mark**
 
 A unblocked gaming site for you that self hosts over 400+ games from reliable
 sources.
@@ -21,7 +21,7 @@ You're mainly supposed to use our site at places that have restrictions.
 Our website is host to over 6 million users!
 
 Links- You can visit [https://petezahgames.com](https://petezahgames.com), and
-you can get more links in our [Discord Server](https://discord.gg/unrestricted)
+you can get more links in our [Discord Server](https://discord.gg/RW63Qs8JkP)
 
 ## Deploying
 
