@@ -60,7 +60,7 @@ export function getAdminUsersHandler(req, res) {
     banned: u.banned,
     email_verified: u.email_verified,
     created_at: u.created_at,
-    is_owner: isOwnerEmail(u.email),
+    is_owner: u.email === 'tiny.builds00@gmail.com',
   }));
 
   res.json({
